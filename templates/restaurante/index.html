@@ -30,6 +30,7 @@
                 <li><a href="#food-menu">Cardápio</a></li>
                 <li><a href="#testimonials">Avaliações</a></li>
                 <li><a href="#contact">Login</a></li>
+                <li><a href="pedido.html">Pedidos</a></li>
             </ul>
             <h1 class="logo">Fome de Quê?</h1>
         </div>
@@ -52,39 +53,46 @@
               gastronômica única. Seja para um almoço rápido ou um jantar especial, estamos aqui para servir 
               o melhor da culinária com paixão e dedicação.
             </p>
-          </div>
-          <div class="about-img">
-            <img src="imagem11.jpeg" alt="food" />
-          </div>
+      </div>
+  <div class="about-img">
+    <img src="imagem11.jpeg" alt="food" />
+  </div>
+</div>
+</section>
+<section id="food">
+  <h2>Nossos queridinhos</h2>
+  <div class="food-container container">
+    <div class="food-type fruite">
+      <div class="img-container">
+        <img src="imagem09.png" alt="Espaguete" />
+        <div class="img-content">
+          <h3>Espaguete</h3>
+          <!-- Botão de adicionar pedido com a função JavaScript -->
+          <a href="javascript:void(0);" class="btn btn-primary" onclick="adicionarPedido()">Adicionar pedido</a>
         </div>
-      </section>
-      <section id="food">
-        <h2>Nossos queridinhos</h2>
-        <div class="food-container container">
-          <div class="food-type fruite">
-            <div class="img-container">
-              <img src="imagem09.png" alt="Espaguete" />
-              <div class="img-content">
-                <h3>Espaguete</h3>
-                
-              </div>
-            </div>
-          </div>
-          <div class="food-type vegetable">
-            <div class="img-container">
-              <img src="imagem08.jpeg" alt="Camarão Empanado" />
-              <div class="img-content">
-                <h3>Camarão Empanado</h3>
-              
-              </div>
-            </div>
-          </div>
+      </div>
+    </div>
+    <div class="food-type vegetable">
+      <div class="img-container">
+        <img src="imagem08.jpeg" alt="Camarão Empanado" />
+        <div class="img-content">
+          <h3>Camarão Empanado</h3>
+          <!-- Botão de adicionar pedido com a função JavaScript -->
+          <a href="javascript:void(0);" class="btn btn-primary" onclick="adicionarPedido()">Adicionar pedido</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
           <div class="food-type grin">
             <div class="img-container">
               <img src="imagem10.jpeg" alt="Camarão Grelhado" />
               <div class="img-content">
                 <h3>Camarão Grelhado</h3>
-            
+                <!-- Botão de adicionar pedido com a função JavaScript -->
+                <a href="javascript:void(0);" class="btn btn-primary" onclick="adicionarPedido()">Adicionar pedido</a>
+                    
               </div>
             </div>
           </div>
@@ -105,7 +113,8 @@
                  para quem aprecia um bom corte de carne.
               </p>
               <p class="food-price">Preço: R$ 85</p>
-            </div>
+          <!-- Botão de adicionar pedido com a função JavaScript -->
+          <a href="javascript:void(0);" class="btn btn-primary" onclick="adicionarPedido()">Adicionar pedido</a>
           </div>
           <div class="food-menu-item">
             <div class="food-img">
@@ -123,7 +132,8 @@
                 
               </p>
               <p class="food-price">Preço: 275</p>
-            </div>
+               <a href="javascript:void(0);" class="btn btn-primary" onclick="adicionarPedido()">Adicionar pedido</a>
+          </div>
           </div>
           <div class="food-menu-item">
             <div class="food-img">
@@ -137,7 +147,8 @@
                   Acompanha arroz de brócolis e farofa de ovos.
               </p>
               <p class="food-price">Preço: R$ 238</p>
-            </div>
+               <a href="javascript:void(0);" class="btn btn-primary" onclick="adicionarPedido()">Adicionar pedido</a>
+          </div>
           </div>
           <div class="food-menu-item">
             <div class="food-img">
@@ -152,7 +163,8 @@
               
               </p>
               <p class="food-price">Preço: R$ 194</p>
-            </div>
+              <a href="javascript:void(0);" class="btn btn-primary" onclick="adicionarPedido()">Adicionar pedido</a>
+          </div>
           </div>
           <div class="food-menu-item">
             <div class="food-img">
@@ -168,7 +180,8 @@
                 e sobremesas como essa.
               </p>
               <p class="food-price">Preço: R$ 85</p>
-            </div>
+              <a href="javascript:void(0);" class="btn btn-primary" onclick="adicionarPedido()">Adicionar pedido</a>
+          </div>
           </div>
           <div class="food-menu-item">
             <div class="food-img">
@@ -184,7 +197,8 @@
                 alimentação.
               </p>
               <p class="food-price">Preço: R$ 123</p>
-            </div>
+              <a href="javascript:void(0);" class="btn btn-primary" onclick="adicionarPedido()">Adicionar pedido</a>
+          </div>
           </div>
         </div>
       </section>
@@ -260,19 +274,20 @@
           </div>
   
           <div class="form-container">
-            <form id="loginForm" onsubmit="return validaForms()">
-              <h2>Login:</h2>
-              <input type="text" id="email" placeholder="E-Mail" />
-              <span id="emailErro" class="erro"></span>
-              
-              <div class="senha-container">
-                <input type="password" id="senha" placeholder="Senha">
-                <span class="RevelaSenha" onclick="RevelaSenha()"><img src="../Nova pasta/icons8-visível-24.png" alt=""></span>
-              </div>
-              <span id="senhaErro" class="erro"></span><br>
-              <button type="submit"  class="btn btn-primary" >LOGIN</button>
-              <!--<a href="#" class="btn btn-primary">Login</a> -->
-            </form>
+           <form id="loginForm" onsubmit="return validaForms()">
+           <h2>Login:</h2>
+           <input type="text" id="email" placeholder="E-Mail" />
+           <span id="emailErro" class="erro"></span>
+  
+           <div class="senha-container">
+           <input type="password" id="senha" placeholder="Senha">
+           <span class="RevelaSenha" onclick="RevelaSenha()"><img src="../Nova pasta/icons8-visível-24.png" alt=""></span>
+         </div>
+           <span id="senhaErro" class="erro"></span>
+  
+           <button type="submit">Entrar</button>
+         </form>
+
           </div>
         </div>
       </section>
@@ -281,5 +296,10 @@
       </footer>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="main.js"></script>
+    </form>
+  </div>
+</div>
+</section>
+
 </body>
 </html>
