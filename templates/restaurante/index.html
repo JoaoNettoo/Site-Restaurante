@@ -6,6 +6,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <script src='main.js'></script>
+    <script src="carrinho.js"></script>
     <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -30,7 +31,7 @@
                 <li><a href="#food-menu">Cardápio</a></li>
                 <li><a href="#testimonials">Avaliações</a></li>
                 <li><a href="#contact">Login</a></li>
-                <li><a href="pedido.html">Pedidos</a></li>
+                <li><a href="pedido.html" id="salvar" >Pedidos</a></li>
             </ul>
             <h1 class="logo">Fome de Quê?</h1>
         </div>
@@ -53,46 +54,45 @@
               gastronômica única. Seja para um almoço rápido ou um jantar especial, estamos aqui para servir 
               o melhor da culinária com paixão e dedicação.
             </p>
-      </div>
-  <div class="about-img">
-    <img src="imagem11.jpeg" alt="food" />
-  </div>
-</div>
-</section>
-<section id="food">
-  <h2>Nossos queridinhos</h2>
+          </div>
+          <div class="about-img">
+            <img src="imagem11.jpeg" alt="food" />
+          </div>
+        </div>
+      </section>
+      <section id="food">
+        <h2>Nossos queridinhos</h2>
   <div class="food-container container">
     <div class="food-type fruite">
       <div class="img-container">
         <img src="imagem09.png" alt="Espaguete" />
         <div class="img-content">
           <h3>Espaguete</h3>
-          <!-- Botão de adicionar pedido com a função JavaScript -->
-          <a href="javascript:void(0);" class="btn btn-primary" onclick="adicionarPedido()">Adicionar pedido</a>
+          <button onclick="adicionarPedidoERedirecionar(1, 'Espaguete', 20, 'imagem09.png')" class="btn btn-primary">Adicionar pedido</button>
+          <!--<a href="pedido.html" class="btn btn-primary">Adicionar pedido</a>-->
         </div>
       </div>
     </div>
-    <div class="food-type vegetable">
-      <div class="img-container">
-        <img src="imagem08.jpeg" alt="Camarão Empanado" />
-        <div class="img-content">
-          <h3>Camarão Empanado</h3>
-          <!-- Botão de adicionar pedido com a função JavaScript -->
-          <a href="javascript:void(0);" class="btn btn-primary" onclick="adicionarPedido()">Adicionar pedido</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
+          <div class="food-type vegetable">
+            <div class="img-container">
+              <img src="imagem08.jpeg" alt="Camarão Empanado" />
+              <div class="img-content">
+                <h3>Camarão Empanado</h3>
+                <button onclick="adicionarPedidoERedirecionar(2, 'Camarão Empanado', 25, 'imagem08.jpeg')" class="btn btn-primary">Adicionar pedido</button>
+                <!--<a href="pedido.html" class="btn btn-primary">Adicionar pedido</a>-->
+              
+              </div>
+            </div>
+          </div>
           <div class="food-type grin">
             <div class="img-container">
               <img src="imagem10.jpeg" alt="Camarão Grelhado" />
               <div class="img-content">
                 <h3>Camarão Grelhado</h3>
-                <!-- Botão de adicionar pedido com a função JavaScript -->
-                <a href="javascript:void(0);" class="btn btn-primary" onclick="adicionarPedido()">Adicionar pedido</a>
-                    
+                <button onclick="adicionarPedidoERedirecionar(3, 'Camarão Grelhado', 20, 'imagem10.jpeg')" class="btn btn-primary">Adicionar pedido</button>
+                <!--<a href="pedido.html" class="btn btn-primary">Adicionar pedido</a>-->
+            
               </div>
             </div>
           </div>
@@ -113,8 +113,9 @@
                  para quem aprecia um bom corte de carne.
               </p>
               <p class="food-price">Preço: R$ 85</p>
-          <!-- Botão de adicionar pedido com a função JavaScript -->
-          <a href="javascript:void(0);" class="btn btn-primary" onclick="adicionarPedido()">Adicionar pedido</a>
+              <button onclick="adicionarPedidoERedirecionar(4, 'Maminha Grelhada', 85, 'imagem2.jfif')" class="btn btn-primary">Adicionar pedido</button>
+              
+            </div>
           </div>
           <div class="food-menu-item">
             <div class="food-img">
@@ -129,11 +130,11 @@
                  feito com gema de ovo,
                  queijo parmesão, creme de leite fresco, 
                  pimenta do reino, bacon e finalizado com farofa crocante de panko.
-                
               </p>
               <p class="food-price">Preço: 275</p>
-               <a href="javascript:void(0);" class="btn btn-primary" onclick="adicionarPedido()">Adicionar pedido</a>
-          </div>
+              <button onclick="adicionarPedidoERedirecionar(5, 'Carbonara', 275, 'imagem3.jpeg')" class="btn btn-primary">Adicionar pedido</button>
+              
+            </div>
           </div>
           <div class="food-menu-item">
             <div class="food-img">
@@ -147,8 +148,9 @@
                   Acompanha arroz de brócolis e farofa de ovos.
               </p>
               <p class="food-price">Preço: R$ 238</p>
-               <a href="javascript:void(0);" class="btn btn-primary" onclick="adicionarPedido()">Adicionar pedido</a>
-          </div>
+              <button onclick="adicionarPedidoERedirecionar(6, 'Bacalhau à Gomes de Sá', 238, 'imagem4.jpeg')" class="btn btn-primary">Adicionar pedido</button>
+              
+            </div>
           </div>
           <div class="food-menu-item">
             <div class="food-img">
@@ -163,8 +165,9 @@
               
               </p>
               <p class="food-price">Preço: R$ 194</p>
-              <a href="javascript:void(0);" class="btn btn-primary" onclick="adicionarPedido()">Adicionar pedido</a>
-          </div>
+              <button onclick="adicionarPedidoERedirecionar(7, 'Camarão Fernando de Noronha', 194, 'imagem5.jpeg')" class="btn btn-primary">Adicionar pedido</button>
+              
+            </div>
           </div>
           <div class="food-menu-item">
             <div class="food-img">
@@ -180,8 +183,9 @@
                 e sobremesas como essa.
               </p>
               <p class="food-price">Preço: R$ 85</p>
-              <a href="javascript:void(0);" class="btn btn-primary" onclick="adicionarPedido()">Adicionar pedido</a>
-          </div>
+              <button onclick="adicionarPedidoERedirecionar(8, 'Torta de Framboesa', 85, 'imagem6.JPG')" class="btn btn-primary">Adicionar pedido</button>
+
+            </div>
           </div>
           <div class="food-menu-item">
             <div class="food-img">
@@ -197,8 +201,9 @@
                 alimentação.
               </p>
               <p class="food-price">Preço: R$ 123</p>
-              <a href="javascript:void(0);" class="btn btn-primary" onclick="adicionarPedido()">Adicionar pedido</a>
-          </div>
+              <button onclick="adicionarPedidoERedirecionar(9, 'Sobremesa Gelada de Frutas', 123, 'imagem7.JPG')" class="btn btn-primary">Adicionar pedido</button>
+
+            </div>
           </div>
         </div>
       </section>
@@ -274,32 +279,26 @@
           </div>
   
           <div class="form-container">
-           <form id="loginForm" onsubmit="return validaForms()">
-           <h2>Login:</h2>
-           <input type="text" id="email" placeholder="E-Mail" />
-           <span id="emailErro" class="erro"></span>
-  
-           <div class="senha-container">
-           <input type="password" id="senha" placeholder="Senha">
-           <span class="RevelaSenha" onclick="RevelaSenha()"><img src="../Nova pasta/icons8-visível-24.png" alt=""></span>
-         </div>
-           <span id="senhaErro" class="erro"></span>
-  
-           <button type="submit">Entrar</button>
-         </form>
-
+            <form id="loginForm" onsubmit="return validaForms()">
+              <h2>Login:</h2>
+              <input type="text" id="email" placeholder="E-Mail" />
+              <span id="emailErro" class="erro"></span>
+              
+              <div class="senha-container">
+                <input type="password" id="senha" placeholder="Senha">
+                <span class="RevelaSenha" onclick="RevelaSenha()"><img src="../Nova pasta/icons8-visível-24.png" alt=""></span>
+              </div>
+              <span id="senhaErro" class="erro"></span><br>
+              <button type="submit"  class="btn btn-primary" >LOGIN</button>
+              <!--<a href="#" class="btn btn-primary">Login</a> -->
+            </form>
           </div>
         </div>
-      </section>
+      </section> 
       <footer id="footer">
         <h2>Todos os Direitos Reservados</h2>
       </footer>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="main.js"></script>
-    </form>
-  </div>
-</div>
-</section>
-
 </body>
 </html>

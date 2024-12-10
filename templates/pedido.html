@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pedido.css">
+    <title>Pedidos</title>
+</head>
+
+<body>
+    <nav >
+        <a href="index.html"><h1 class="logo">Fome de Quê?</h1></a>
+    </nav>
+    <header>
+        <h1 class="page-title">Pedidos</h1>
+    </header>
+    <main>
+            <h2>Carrinho</h2>
+            <div id="carrinho"></div>
+            <p>Total: R$ <span id="total">0</span></p>
+            
+            <script src="carrinho.js"></script>
+            <script>
+              // Carrega o estado do carrinho do Local Storage ao carregar a página
+              document.addEventListener("DOMContentLoaded", function () {
+                const carrinhoSalvo = JSON.parse(localStorage.getItem("carrinho")) || [];
+                carrinho = carrinhoSalvo; // Atualiza a variável `carrinho` no script
+                atualizarCarrinho(); // Atualiza a interface com os dados salvos
+              });
+            </script>
+            
+      </script>
+        </section>
+        <div class="action-buttons">
+            <button class="finalize-btn">Finalizar Pedido</button>
+            <button class="cancel-btn">Cancelar Pedido</button>
+        </div>
+    </main>
+
+</body>
+
+</html>
