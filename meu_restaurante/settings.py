@@ -16,6 +16,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'meu_restaurante',  # Adicionei o app principal
 ]
 
 # Middleware
@@ -35,7 +36,7 @@ ROOT_URLCONF = 'meu_restaurante.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],  # Diretório de templates
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,6 +83,9 @@ USE_TZ = True
 
 # Configurações de arquivos estáticos
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',  # Configuração para encontrar arquivos estáticos
+]
 
 # Configurações de arquivos de mídia (se necessário)
 MEDIA_URL = '/media/'

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="pedido.css">
+    <link rel="stylesheet" href="{% static 'css/pedido.css' %}">
     <title>Pedidos</title>
 </head>
 
 <body>
     <nav >
-        <a href="index.html"><h1 class="logo">Fome de Quê?</h1></a>
+        <a href="{% url 'index' %}"><h1 class="logo">Fome de Quê?</h1></a>
     </nav>
     <header>
         <h1 class="page-title">Pedidos</h1>
