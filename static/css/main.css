@@ -104,7 +104,7 @@ body {
       rgba(240, 240, 240, 0.144),
       rgba(255, 255, 255, 0.336)
     ),
-    url("imagem01.png");
+    url('/static/images/imagem01.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +58,7 @@
             </p>
           </div>
           <div class="about-img">
-            <img src="imagem11.jpeg" alt="food" />
+            <img src="{% static 'images/imagem11.jpeg' %}" alt="food" />
           </div>
         </div>
       </section>
@@ -65,7 +67,7 @@
   <div class="food-container container">
     <div class="food-type fruite">
       <div class="img-container">
-        <img src="imagem09.png" alt="Espaguete" />
+        <img src="{% static 'images/imagem09.png' %}" alt="Espaguete" />
         <div class="img-content">
           <h3>Espaguete</h3>
           <button onclick="adicionarPedidoERedirecionar(1, 'Espaguete', 20, 'imagem09.png')" class="btn btn-primary">Adicionar pedido</button>
@@ -76,7 +78,7 @@
 
           <div class="food-type vegetable">
             <div class="img-container">
-              <img src="imagem08.jpeg" alt="Camarão Empanado" />
+              <img src="{% static 'images/imagem08.jpeg' %}" alt="Camarão Empanado" />
               <div class="img-content">
                 <h3>Camarão Empanado</h3>
                 <button onclick="adicionarPedidoERedirecionar(2, 'Camarão Empanado', 25, 'imagem08.jpeg')" class="btn btn-primary">Adicionar pedido</button>
@@ -87,7 +89,7 @@
           </div>
           <div class="food-type grin">
             <div class="img-container">
-              <img src="imagem10.jpeg" alt="Camarão Grelhado" />
+              <img src="{% static 'images/imagem10.jpeg' %}" alt="Camarão Grelhado" />
               <div class="img-content">
                 <h3>Camarão Grelhado</h3>
                 <button onclick="adicionarPedidoERedirecionar(3, 'Camarão Grelhado', 20, 'imagem10.jpeg')" class="btn btn-primary">Adicionar pedido</button>
@@ -103,7 +105,7 @@
         <div class="food-menu-container container">
           <div class="food-menu-item">
             <div class="food-img">
-              <img src="imagem2.jfif" alt="Maminha Grelhada" />
+              <img src="{% static 'images/imagem2.jfif' %}" alt="Maminha Grelhada" />
             </div>
             <div class="food-description">
               <h2 class="food-titile">Maminha Grelhada</h2>
@@ -119,10 +121,7 @@
           </div>
           <div class="food-menu-item">
             <div class="food-img">
-              <img
-                src="imagem3.jpeg"
-                alt="Carbonara"
-              />
+              <img src="{% static 'images/imagem3.jpeg' %}" alt="Carbonara"  />
             </div>
             <div class="food-description">
               <h2 class="food-titile"> Carbonara</h2>
@@ -138,7 +137,7 @@
           </div>
           <div class="food-menu-item">
             <div class="food-img">
-              <img src="imagem4.jpeg" alt="Bacalhau à Gomes de Sá" />
+              <img src="{% static 'images/imagem4.jpeg' %}" alt="Bacalhau à Gomes de Sá" />
             </div>
             <div class="food-description">
               <h2 class="food-titile">Bacalhau à Gomes de Sá</h2>
@@ -154,7 +153,7 @@
           </div>
           <div class="food-menu-item">
             <div class="food-img">
-              <img src="imagem5.jpeg" alt="Camarão Fernando de Noronha" />
+              <img src="{% static 'images/imagem5.jpeg' %}" alt="Camarão Fernando de Noronha" />
             </div>
             <div class="food-description">
               <h2 class="food-titile">Camarão Fernando de Noronha</h2>
@@ -171,7 +170,7 @@
           </div>
           <div class="food-menu-item">
             <div class="food-img">
-              <img src="imagem6.JPG" alt="Torta de Framboesa" />
+              <img src="{% static 'images/imagem6.JPG' %}" alt="Torta de Framboesa" />
             </div>
             <div class="food-description">
               <h2 class="food-titile">Torta de Framboesa</h2>
@@ -189,7 +188,7 @@
           </div>
           <div class="food-menu-item">
             <div class="food-img">
-              <img src="imagem7.JPG" alt="Sobremesa Gelada de Frutas" />
+              <img src="{% static 'images/imagem7.JPG' %}" alt="Sobremesa Gelada de Frutas" />
             </div>
             <div class="food-description">
               <h2 class="food-titile">Sobremesa Gelada de Frutas</h2>
@@ -213,8 +212,7 @@
           <div class="testimonial-box">
             <div class="customer-detail">
               <div class="customer-photo">
-                <img src="imagem13.JPG" alt="" />
-                <p class="customer-name">Jorge Lee</p>
+                <img src="{% static 'images/imagem13.JPG' %}" alt="" /><p class="customer-name">Jorge Lee</p>
               </div>
             </div>
             <div class="star-rating">
@@ -232,10 +230,7 @@
           <div class="testimonial-box">
             <div class="customer-detail">
               <div class="customer-photo">
-                <img
-                  src="https://i.postimg.cc/sxd2xCD2/female-photo1.jpg"
-                  alt=""
-                />
+                <img src="https://i.postimg.cc/sxd2xCD2/female-photo1.jpg" alt=""/>
                 <p class="customer-name">Amelia Gonçalves</p>
               </div>
             </div>
@@ -275,7 +270,7 @@
       <section id="contact">
         <div class="contact-container container">
           <div class="contact-img">
-            <img src="imagem12.JPG" alt="" />
+            <img src="{% static 'images/imagem12.JPG' %}" alt="" />
           </div>
   
           <div class="form-container">
