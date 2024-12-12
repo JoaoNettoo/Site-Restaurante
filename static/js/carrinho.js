@@ -1,24 +1,37 @@
 let carrinho = [];
 
+function adicionarAoCarrinho(id, nome, preco, imagem) {
+  //analisa se o usuario está logado
+  //caso esteja procedo com o pedido
+  const usuario = localStorage.getItem("usuario");
+    if (!usuario) {
+        alert("Você precisa estar logado para adicionar itens ao carrinho.");
+        // Opcional: redirecionar para a página de login
+        window.location.href = "#contact";
+        return;
+    }
+ 
+    const produtoExistente = carrinho.find(produto => produto.id === id);
+
+    if (produtoExistente) {
+      produtoExistente.quantidade += 1;
+    } else {
+      carrinho.push({ id, nome, preco, imagem, quantidade: 1 });
+    }
+
+    salvarCarrinho(); // Salva o carrinho no Local Storage
+    atualizarCarrinho();
+
+}
+
+
 // Função para adicionar produto e redirecionar para a página de pedidos
 function adicionarPedidoERedirecionar(id, nome, preco, imagem) {
   adicionarAoCarrinho(id, nome, preco, imagem); // Adiciona o produto ao carrinho
-  window.location.href = "pedido.html"; // Redireciona para a página de pedidos
-  
+  window.location.href = 'pedido.html'; // Redireciona para a página de pedidos
+  window.location.assign("pedido.html");
 }
 
-function adicionarAoCarrinho(id, nome, preco, imagem) {
-  const produtoExistente = carrinho.find(produto => produto.id === id);
-
-  if (produtoExistente) {
-    produtoExistente.quantidade += 1;
-  } else {
-    carrinho.push({ id, nome, preco, imagem, quantidade: 1 });
-  }
-
-  salvarCarrinho(); // Salva o carrinho no Local Storage
-  atualizarCarrinho();
-}
 
 // Função para reduzir a quantidade do produto do carrinho
 function reduzirDoCarrinho(id) {
@@ -43,9 +56,18 @@ function removerDoCarrinho(id) {
   atualizarCarrinho();
 }
 
+function cancelarPedido(){
+  carrinho.forEach(produto => removerDoCarrinho(produto.id));
+  salvarCarrinho();
+  atualizarCarrinho();
+  location.reload(true);
+
+}
+
 function salvarCarrinho() {
   localStorage.setItem("carrinho", JSON.stringify(carrinho));
 }
+
 
 // Função para atualizar a interface do carrinho
 function atualizarCarrinho() {
@@ -54,9 +76,10 @@ function atualizarCarrinho() {
 
   carrinhoDiv.innerHTML = ""; // Limpa o carrinho antes de atualizar
   let total = 0;
-
+  
   carrinho.forEach(produto => {
     total += produto.preco * produto.quantidade;
+    salvarCarrinho();
 
     carrinhoDiv.innerHTML += `
       <div style="display: flex; align-items: center; margin-bottom: 10px;">
@@ -73,7 +96,11 @@ function atualizarCarrinho() {
 
   totalDiv.textContent = total.toFixed(2); // Atualiza o total
 
-  
 }
 
-
+function finalizarPedido(){
+  cancelarPedido();
+  alert("Seu Pedido foi finalizado");
+  alert("Volte sempre!");
+  
+}

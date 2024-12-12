@@ -41,7 +41,10 @@
       <section class="showcase-area" id="showcase">
         <div class="showcase-container">
           <h1 class="main-title" id="home">Vem matar essa fome com a gente</h1>
-          <a href="#food-menu" class="btn btn-primary">Cardápio</a>
+          <a id="menuBtn" href="#food-menu" class="btn btn-primary">Cardápio</a>
+          <div id="loginMessage" style="display: none; color: red; margin-top: 20px;">
+            Faça login para continuar
+        </div>
         </div>
       </section>
   
@@ -70,18 +73,18 @@
         <img src="{% static 'images/imagem09.png' %}" alt="Espaguete" />
         <div class="img-content">
           <h3>Espaguete</h3>
-          <button onclick="adicionarPedidoERedirecionar(1, 'Espaguete', 20, 'imagem09.png')" class="btn btn-primary">Adicionar pedido</button>
+          <button onclick="window.location.href='pedido.html'; adicionarPedidoERedirecionar(1, 'Espaguete', 18, 'imagem09.png')" class="btn btn-primary">Adicionar pedido</button>
           <!--<a href="pedido.html" class="btn btn-primary">Adicionar pedido</a>-->
+        
         </div>
       </div>
     </div>
-
           <div class="food-type vegetable">
             <div class="img-container">
               <img src="{% static 'images/imagem08.jpeg' %}" alt="Camarão Empanado" />
               <div class="img-content">
                 <h3>Camarão Empanado</h3>
-                <button onclick="adicionarPedidoERedirecionar(2, 'Camarão Empanado', 25, 'imagem08.jpeg')" class="btn btn-primary">Adicionar pedido</button>
+                <button onclick="window.location.href='pedido.html'; adicionarPedidoERedirecionar(2, 'Camarão Empanado', 25, 'imagem08.jpeg')" class="btn btn-primary">Adicionar pedido</button>
                 <!--<a href="pedido.html" class="btn btn-primary">Adicionar pedido</a>-->
               
               </div>

@@ -18,6 +18,7 @@
         <h1 class="page-title">Pedidos</h1>
     </header>
     <main>
+        <section class="orders-container">
             <h2>Carrinho</h2>
             <div id="carrinho"></div>
             <p>Total: R$ <span id="total">0</span></p>
@@ -31,12 +32,11 @@
                 atualizarCarrinho(); // Atualiza a interface com os dados salvos
               });
             </script>
-            
-      </script>
         </section>
         <div class="action-buttons">
-            <button class="finalize-btn">Finalizar Pedido</button>
-            <button class="cancel-btn">Cancelar Pedido</button>
+            <button class="finalize-btn" onclick="finalizarPedido()">Finalizar Pedido</button>
+            <button class="add-btn" onclick="window.location.href='index.html'; salvarCarrinho() " >Adicionar Pedido</button>
+            <button class="cancel-btn" onclick="cancelarPedido()">Cancelar Pedido</button>
         </div>
     </main>
 
