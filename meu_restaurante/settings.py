@@ -17,6 +17,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'meu_restaurante',  # Adicionei o app principal
+    'rest_framework',
 ]
 
 # Middleware
@@ -54,13 +55,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'meu_restaurante.wsgi.application'
 
-# Banco de dados (SQLite por padrão)
+# Banco de dados 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'nome_do_banco',  # Substitua pelo nome do seu banco de dados
+        'USER': 'usuario_mysql',  # Substitua pelo seu usuário do MySQL
+        'PASSWORD': 'senha_mysql',  # Substitua pela senha do seu usuário
+        'HOST': 'localhost',  # Ou o endereço do seu servidor MySQL
+        'PORT': '3306',  # A porta padrão do MySQL é 3306
     }
 }
+
 
 # Configurações de autenticação
 AUTH_PASSWORD_VALIDATORS = [

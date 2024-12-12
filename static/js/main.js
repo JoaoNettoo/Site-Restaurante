@@ -16,95 +16,93 @@ $(document).ready(function () {
     }
   });
 });
+
+// Controle de autenticação
 let isAuthenticated = false;
 
-// Verifica se o usuário está logado (simulação)
-let usuarioLogado = false;
+// Verifica se o usuário está logado no carregamento da página
+window.onload = function () {
+  verificaAutenticacao();
+};
 
-ion validaForms() {
-  // Limpa mensagens de erro
-  document.getElementById('emailErro').innerText = '';
-  document.getElementById('senhaErro').innerText = '';
+// Função para validar os formulários e fazer login
+function validaForms() {
+  document.getElementById("emailErro").innerText = "";
+  document.getElementById("senhaErro").innerText = "";
 
-  // Obtém os valores dos campos
-  const email = document.getElementById('email').value;
-  const senha = document.getElementById('senha').value;
+  const email = document.getElementById("email").value;
+  const senha = document.getElementById("senha").value;
   let valida = true;
 
-  // Valida o campo de e-mail
-  if (email === '') {
-      document.getElementById('emailErro').innerText = 'Por favor, insira seu e-mail.';
-      valida = false;
+  // Validação
+  if (email === "") {
+    document.getElementById("emailErro").innerText = "Por favor, insira seu e-mail.";
+    valida = false;
   } else if (!validarEmail(email)) {
-      valida = false;
+    valida = false;
   }
 
-  // Valida o campo de senha
-  if (senha === '') {
-      document.getElementById('senhaErro').innerText = 'Por favor, insira sua senha.';
-      valida = false;
-  } else if (senha.length < 6) {
-      document.getElementById('senhaErro').innerText = 'A senha deve ter no mínimo 6 caracteres.';
-      valida = false;
-  } else if (!/[A-Z]/.test(senha) || !/[0-9]/.test(senha)) {
-      document.getElementById('senhaErro').innerText = 'A senha deve conter pelo menos uma letra maiúscula e um número.';
-      valida = false;
+  if (senha === "") {
+    document.getElementById("senhaErro").innerText = "Por favor, insira sua senha.";
+    valida = false;
+  } else if (senha.length < 6 || !/[A-Z]/.test(senha) || !/[0-9]/.test(senha)) {
+    document.getElementById("senhaErro").innerText = "A senha deve atender aos critérios.";
+    valida = false;
   }
 
-  // Se tudo for válido, salva os dados e redireciona
   if (valida) {
-      const dados = {
-          nome: email.split('@')[0],
-          email: email,
-          senha: senha
-      };
+    const dados = { email: email, senha: senha };
 
-      salvaLogin(dados);
-      isAuthenticated = true;
-      alert("Sucesso, você está logado. ");
-      window.location.href = "#food"; 
+    // Fazendo chamada à API
+    fetch("/api/login/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(dados),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          salvaLogin(data.usuario);
+          isAuthenticated = true;
+          alert("Login realizado com sucesso!");
+          window.location.href = "/pedido.html";
+        } else {
+          document.getElementById("emailErro").innerText = data.message || "Erro ao fazer login.";
+        }
+      })
+      .catch((error) => {
+        console.error("Erro na API:", error);
+      });
   }
-  return valida;
 }
 
-// Função para validar o formato do e-mail
+// Valida o formato do e-mail
 function validarEmail(email) {
   const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   if (!regex.test(email)) {
-      document.getElementById('emailErro').innerText = "E-mail inválido. Exemplo: nome@email.com";
-      return false;
+    document.getElementById("emailErro").innerText = "E-mail inválido.";
+    return false;
   }
   return true;
 }
 
-// Função para exibir/ocultar a senha
-function RevelaSenha() {
-  const senhaInput = document.getElementById("senha");
-  const tipo = senhaInput.getAttribute("type") === "password" ? "text" : "password";
-  senhaInput.setAttribute("type", tipo);
-}
-
-// Função para salvar os dados de login no localStorage
+// Salva login no localStorage
 function salvaLogin(dados) {
   localStorage.setItem("usuario", JSON.stringify(dados));
 }
 
-
-function funcaoProtegida() {
-  if (!isAuthenticated) {
-      alert("Acesso negado. Faça login primeiro.");
-      return;
-  }
-  console.log("Função protegida executada!");
-}
-
+// Verifica autenticação
 function verificaAutenticacao() {
   const usuario = localStorage.getItem("usuario");
-  if (usuario) {
-      isAuthenticated = true;
-  } else {
-      isAuthenticated = false;
-  }
+  isAuthenticated = !!usuario;
 }
 
-window.onload = verificaAutenticacao;
+// Botão do cardápio
+document.querySelector(".btn-primary").addEventListener("click", function (e) {
+  if (isAuthenticated) {
+    window.location.href = "/pedido.html";
+  } else {
+    alert("Faça login para acessar o cardápio.");
+    window.location.href = "#login-section";
+  }
+});
