@@ -1,5 +1,12 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from django.contrib.auth import authenticate, login
+from rest_framework.decorators import api_view
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.models import User
 
 # View para a página inicial
 def index(request):
@@ -9,6 +16,40 @@ def index(request):
 def pedido(request):
     return render(request, 'restaurante/pedido.html')  # Renderiza o template da página de pedidos
 
+# API para retornar o login 
+class LoginView(APIView):
+    def post(self, request):
+        email = request.data.get("email")
+        senha = request.data.get("senha")
+        
+        # Tenta obter o usuário pelo email
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            return Response({'success': False, 'message': 'Credenciais inválidas'}, status=400)
+        
+        # Autenticação do usuário
+        user = authenticate(request, username=user.username, password=senha)
+
+        if user:
+            # Geração do token
+            refresh = RefreshToken.for_user(user)
+            return Response({
+                'success': True,
+                'token': str(refresh.access_token),  # Retorna o token
+                'usuario': {
+                    'email': user.email,
+                    'nome': user.username,
+                }
+            })
+        return Response({'success': False, 'message': 'Credenciais inválidas'}, status=400)
+
+class ProtectedView(APIView):
+    permission_classes = [IsAuthenticated]  # Requer autenticação
+
+    def get(self, request):
+        return Response({'message': 'Você está autenticado!'})
+        
 # API para retornar uma mensagem ou dados do pedido
 class PedidoAPIView(APIView):
     def get(self, request):

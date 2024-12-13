@@ -6,7 +6,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Configurações principais
 SECRET_KEY = 'sua-chave-secreta-aqui'  # Substitua por uma chave segura
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost', 
+    '127.0.0.1',
+    '0.0.0.0',
+    '4363671825424e60ac9762b0294ccb16.vfs.cloud9.us-east-1.amazonaws.com'
+]
+
+LOGIN_REDIRECT_URL = '/pedido.html'  # Redireciona para a página de pedidos após o login
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
 
 # Aplicativos instalados
 INSTALLED_APPS = [
@@ -18,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'meu_restaurante',  # Adicionei o app principal
     'rest_framework',
+    'rest_framework_simplejwt',
 ]
 
 # Middleware
@@ -58,12 +72,12 @@ WSGI_APPLICATION = 'meu_restaurante.wsgi.application'
 # Banco de dados 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'nome_do_banco',  # Substitua pelo nome do seu banco de dados
-        'USER': 'usuario_mysql',  # Substitua pelo seu usuário do MySQL
-        'PASSWORD': 'senha_mysql',  # Substitua pela senha do seu usuário
-        'HOST': 'localhost',  # Ou o endereço do seu servidor MySQL
-        'PORT': '3306',  # A porta padrão do MySQL é 3306
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'restaurante',
+        'USER': 'seu_usuario',
+        'PASSWORD': 'sua_senha',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 

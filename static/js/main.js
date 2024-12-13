@@ -54,25 +54,36 @@ function validaForms() {
     const dados = { email: email, senha: senha };
 
     // Fazendo chamada à API
-    fetch("/api/login/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(dados),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          salvaLogin(data.usuario);
-          isAuthenticated = true;
-          alert("Login realizado com sucesso!");
-          window.location.href = "/pedido.html";
-        } else {
-          document.getElementById("emailErro").innerText = data.message || "Erro ao fazer login.";
-        }
-      })
-      .catch((error) => {
-        console.error("Erro na API:", error);
-      });
+  fetch("/api/login/", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(dados),
+})
+  .then((response) => response.json())
+  .then((data) => {
+    if (data.success) {
+      localStorage.setItem("token", data.token);  // Armazenando o token no localStorage
+      alert("Login realizado com sucesso!");
+      window.location.href = "/pedido.html";
+    } else {
+      document.getElementById("emailErro").innerText = data.message || "Erro ao fazer login.";
+    }
+  })
+  .catch((error) => {
+    console.error("Erro na API:", error);
+  });
+
+fetch("/api/protected-endpoint/", {
+  method: "GET",
+  headers: {
+    "Authorization": `Bearer ${localStorage.getItem("token")}`,
+  }
+  
+})
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error("Erro na requisição:", error));
+
   }
 }
 
