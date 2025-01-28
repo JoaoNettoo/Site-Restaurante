@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -7,6 +7,7 @@ from rest_framework.decorators import api_view
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 # View para a página inicial
 def index(request):
@@ -16,7 +17,32 @@ def index(request):
 def pedido(request):
     return render(request, 'restaurante/pedido.html')  # Renderiza o template da página de pedidos
 
-# API para retornar o login 
+# View para o login do formulário HTML
+def login_view(request):
+    if request.method == "POST":
+        email = request.POST.get("email")
+        senha = request.POST.get("senha")
+        
+        # Tenta obter o usuário pelo email
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            messages.error(request, "E-mail ou senha inválidos. Tente novamente.")
+            return redirect('restaurante/index.html')  # Retorna à página inicial em caso de erro
+
+        # Autentica o usuário
+        user = authenticate(request, username=user.username, password=senha)
+        if user:
+            login(request, user)  # Faz o login do usuário
+            messages.success(request, "Login efetuado com sucesso!")
+            return redirect('restaurante/index.html')  # Redireciona para o cardápio (index)
+        else:
+            messages.error(request, "E-mail ou senha inválidos. Tente novamente.")
+            return redirect('restaurante/index.html')  # Retorna à página inicial
+
+    return render(request, 'restaurante/index.html')
+
+# API para retornar o login (JWT)
 class LoginView(APIView):
     def post(self, request):
         email = request.data.get("email")
@@ -44,12 +70,13 @@ class LoginView(APIView):
             })
         return Response({'success': False, 'message': 'Credenciais inválidas'}, status=400)
 
+# View protegida (exemplo)
 class ProtectedView(APIView):
     permission_classes = [IsAuthenticated]  # Requer autenticação
 
     def get(self, request):
         return Response({'message': 'Você está autenticado!'})
-        
+
 # API para retornar uma mensagem ou dados do pedido
 class PedidoAPIView(APIView):
     def get(self, request):

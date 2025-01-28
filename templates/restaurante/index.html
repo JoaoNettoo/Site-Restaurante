@@ -277,21 +277,30 @@
           </div>
   
           <div class="form-container">
-            <form id="loginForm" onsubmit="return validaForms()">
+            <form id="loginForm" method="POST" action="{% url 'login' %}">
+              {% csrf_token %}
               <h2>Login:</h2>
-              <input type="text" id="email" placeholder="E-Mail" />
+              <input type="text" id="email" name="username" placeholder="E-Mail" />
               <span id="emailErro" class="erro"></span>
               
               <div class="senha-container">
-                <input type="password" id="senha" placeholder="Senha">
-                <span class="RevelaSenha" onclick="RevelaSenha()"><img src="../Nova pasta/icons8-visível-24.png" alt=""></span>
+                <input type="password" id="senha" name="password" placeholder="Senha">
+              <span class="RevelaSenha" onclick="RevelaSenha()"><img src="../Nova pasta/icons8-visível-24.png" alt=""></span>
               </div>
               <span id="senhaErro" class="erro"></span><br>
-              <button type="submit"  class="btn btn-primary" >LOGIN</button>
-              <!--<a href="#" class="btn btn-primary">Login</a> -->
-            </form>
+              <button type="submit" class="btn btn-primary">LOGIN</button>
+              </form>
           </div>
         </div>
+      
+        {% if messages %}
+         <div class="messages">
+            {% for message in messages %}
+               <div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+        
       </section> 
       <footer id="footer">
         <h2>Todos os Direitos Reservados</h2>

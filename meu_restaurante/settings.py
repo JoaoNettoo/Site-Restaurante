@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'meu_restaurante',  # Adicionei o app principal
+    'meu_restaurante',  # app principal
     'rest_framework',
     'rest_framework_simplejwt',
 ]
@@ -73,9 +73,9 @@ WSGI_APPLICATION = 'meu_restaurante.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'restaurante',
-        'USER': 'seu_usuario',
-        'PASSWORD': 'sua_senha',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'postgre',
         'HOST': 'localhost',
         'PORT': '5432',
     }

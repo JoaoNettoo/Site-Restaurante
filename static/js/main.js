@@ -17,6 +17,16 @@ $(document).ready(function () {
   });
 });
 
+window.onload = function() {
+  // Verifica se existe uma mensagem de sucesso (indicando que o login foi realizado)
+  if (document.getElementById("cardapio") && document.querySelector(".alert-success")) {
+      // Exibe a seção do cardápio
+      document.getElementById("cardapio").style.display = "block";
+      // Faz o scroll até a seção do cardápio
+      window.scrollTo(0, document.getElementById("cardapio").offsetTop);
+  }
+};
+
 // Controle de autenticação
 let isAuthenticated = false;
 
