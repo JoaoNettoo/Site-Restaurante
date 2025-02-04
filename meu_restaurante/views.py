@@ -28,14 +28,14 @@ def login_view(request):
             user = User.objects.get(email=email)
         except User.DoesNotExist:
             messages.error(request, "E-mail ou senha inválidos. Tente novamente.")
-            return redirect('restaurante/index.html')  # Retorna à página inicial em caso de erro
+            return redirect('loginForm')  # Retorna à página inicial em caso de erro
 
         # Autentica o usuário
         user = authenticate(request, username=user.username, password=senha)
         if user:
             login(request, user)  # Faz o login do usuário
             messages.success(request, "Login efetuado com sucesso!")
-            return redirect('restaurante/index.html')  # Redireciona para o cardápio (index)
+            return redirect('food-menu')  # Redireciona para o cardápio (index)
         else:
             messages.error(request, "E-mail ou senha inválidos. Tente novamente.")
             return redirect('restaurante/index.html')  # Retorna à página inicial
