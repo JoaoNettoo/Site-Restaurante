@@ -1,117 +1,127 @@
-$(document).ready(function () {
+document.addEventListener("DOMContentLoaded", function () {
+  // Verifica autenticação ao carregar a página
+  verificaAutenticacao();
+
+  // Adiciona evento ao formulário de login
+  const loginForm = document.getElementById("loginForm");
+  if (loginForm) {
+    loginForm.addEventListener("submit", validaForms);
+  }
+
   // Smooth scroll para os links com hash
-  $("a").on("click", function (event) {
-    if (this.hash !== "") {
-      event.preventDefault();
-      var hash = this.hash;
-      $("html, body").animate(
-        {
-          scrollTop: $(hash).offset().top,
-        },
-        800,
-        function () {
-          window.location.hash = hash;
+  document.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", function (event) {
+      if (this.hash !== "") {
+        event.preventDefault();
+        const hash = this.hash;
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth" });
+          history.pushState(null, null, hash);
         }
-      );
-    }
+      }
+    });
   });
+
+  // Verifica se a seção do cardápio deve ser exibida ao carregar a página
+  const foodMenu = document.getElementById("food-menu");
+  const alertSuccess = document.querySelector(".alert-success");
+  if (foodMenu && alertSuccess) {
+    foodMenu.style.display = "block";
+    window.scrollTo(0, foodMenu.offsetTop);
+  }
+
+  // Evento para o botão do cardápio
+  const btnCardapio = document.querySelector(".btn-primary");
+  if (btnCardapio) {
+    btnCardapio.addEventListener("click", function () {
+      if (isAuthenticated) {
+        window.location.href = "/pedido.html"; // Redireciona para pedidos se autenticado
+      } else {
+        alert("Faça login para acessar o cardápio.");
+        window.location.href = "#login-section"; // Redireciona para a seção de login
+      }
+    });
+  }
 });
 
-// Controle de autenticação
+// Variável de controle de autenticação
 let isAuthenticated = false;
 
-// Verifica se o usuário está logado no carregamento da página
-window.onload = function () {
-  verificaAutenticacao();
-  // Verifica se existe uma mensagem de sucesso (indicando que o login foi realizado)
-  if (document.getElementById("food-menu") && document.querySelector(".alert-success")) {
-      // Exibe a seção do cardápio
-      document.getElementById("food-menu").style.display = "block";
-      // Faz o scroll até a seção do cardápio
-      window.scrollTo(0, document.getElementById("food-menu").offsetTop);
-  }
-};
+// Verifica se o usuário está autenticado
+function verificaAutenticacao() {
+  const usuario = localStorage.getItem("usuario");
+  isAuthenticated = !!usuario; // Se houver usuário, autenticação é verdadeira
+}
 
 // Função para validar os formulários e fazer login
 function validaForms(event) {
-  event.preventDefault();  // Impede o envio padrão do formulário
+  event.preventDefault(); // Impede o envio padrão do formulário
+
+  // Obtendo os elementos dos campos
+  const emailInput = document.getElementById("email");
+  const senhaInput = document.getElementById("senha");
+  const emailErro = document.getElementById("emailErro");
+  const senhaErro = document.getElementById("senhaErro");
 
   // Limpa mensagens de erro
-  document.getElementById("emailErro").innerText = "";
-  document.getElementById("senhaErro").innerText = "";
+  emailErro.innerText = "";
+  senhaErro.innerText = "";
 
-  const email = document.getElementById("email").value;
-  const senha = document.getElementById("senha").value;
+  const email = emailInput.value.trim();
+  const senha = senhaInput.value.trim();
   let valida = true;
 
   // Validação do e-mail
   if (email === "") {
-    document.getElementById("emailErro").innerText = "Por favor, insira seu e-mail.";
+    emailErro.innerText = "Por favor, insira seu e-mail.";
     valida = false;
   } else if (!validarEmail(email)) {
+    emailErro.innerText = "E-mail inválido.";
     valida = false;
   }
 
   // Validação da senha
   if (senha === "") {
-    document.getElementById("senhaErro").innerText = "Por favor, insira sua senha.";
+    senhaErro.innerText = "Por favor, insira sua senha.";
     valida = false;
   } else if (senha.length < 6 || !/[A-Z]/.test(senha) || !/[0-9]/.test(senha)) {
-    document.getElementById("senhaErro").innerText = "A senha deve atender aos critérios.";
+    senhaErro.innerText = "A senha deve conter pelo menos 6 caracteres, 1 letra maiúscula e 1 número.";
     valida = false;
   }
 
-  // Se as validações passarem, envia a requisição de login
-  if (valida) {
-    const dados = { email: email, senha: senha };
+  // Se as validações falharem, interrompe o envio
+  if (!valida) return;
 
-    // Fazendo chamada à API de login
-    fetch("/api/login/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(dados),
-    })
-    .then((response) => response.json())
-    .then((data) => {
+  // Dados para autenticação
+  const dados = { email, senha };
+
+  // Fazendo chamada à API de login
+  fetch("/api/login/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(dados),
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log("Resposta da API:", data); // Debugando a resposta
       if (data.success) {
-        localStorage.setItem("token", data.token);  // Armazenando o token no localStorage
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("usuario", JSON.stringify(data.usuario));
         alert("Login realizado com sucesso!");
-        window.location.href = "/pedido.html";  // Redireciona para a página de pedido
+        window.location.href = "/pedido.html";
       } else {
-        document.getElementById("emailErro").innerText = data.message || "Erro ao fazer login.";
-      }
+        senhaErro.innerText = "E-mail ou senha incorretos."; // Mensagem clara para credenciais erradas
+      }          
     })
-    .catch((error) => {
+    .catch(error => {
       console.error("Erro na API:", error);
+      emailErro.innerText = "Erro de conexão com o servidor.";
     });
-  }
 }
 
-// Valida o formato do e-mail
+// Função para validar e-mail
 function validarEmail(email) {
-  const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  if (!regex.test(email)) {
-    document.getElementById("emailErro").innerText = "E-mail inválido.";
-    return false;
-  }
-  return true;
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
 }
-
-// Verifica autenticação no localStorage
-function verificaAutenticacao() {
-  const usuario = localStorage.getItem("usuario");
-  isAuthenticated = !!usuario;  // Verifica se o usuário está autenticado
-}
-
-// Botão do cardápio
-document.querySelector(".btn-primary").addEventListener("click", function (e) {
-  if (isAuthenticated) {
-    window.location.href = "/pedido.html";  // Redireciona para a página de pedido se autenticado
-  } else {
-    alert("Faça login para acessar o cardápio.");
-    window.location.href = "#login-section";  // Redireciona para a seção de login
-  }
-});
-
-// Vincula a função de validação ao evento de envio do formulário
-document.getElementById("loginForm").addEventListener("submit", validaForms);

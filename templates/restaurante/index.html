@@ -7,8 +7,6 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href="{% static 'css/main.css' %}">
-    <script src="{% static 'js/main.js' %}"></script>
-    <script src="{% static 'js/carrinho.js' %}"></script>
     <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -277,16 +275,23 @@
           </div>
   
           <div class="form-container">
-            <form id="loginForm" method="POST" action="{% url 'login' %}">
+            <form id="loginForm" method="POST" action="{% url 'login' %}" onsubmit="return validaForms(event)">
               {% csrf_token %}
               <h2>Login:</h2>
-              <input type="text" id="email" name="username" placeholder="E-Mail" />
-              <span id="emailErro" class="erro"></span>
-              
-              <div class="senha-container">
-                <input type="password" id="senha" name="password" placeholder="Senha">
-              </div>
-              <span id="senhaErro" class="erro"></span><br>
+                <!-- Campo de E-mail -->
+                <input type="text" id="email" name="username" placeholder="E-Mail" />
+                <div class="erro-container">
+                    <span id="emailErro" class="erro"></span>
+                </div>
+
+                <!-- Campo de Senha -->
+                <div class="senha-container">
+                    <input type="password" id="senha" name="password" placeholder="Senha">
+                </div>
+                <div class="erro-container">
+                    <span id="senhaErro" class="erro"></span>
+                </div>
+              <br>
               <button type="submit" class="btn btn-primary">LOGIN</button>
               </form>
           </div>
@@ -303,7 +308,8 @@
       <footer id="footer">
         <h2>Todos os Direitos Reservados</h2>
       </footer>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <script src="main.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="{% static 'js/main.js' %}"></script>
+      <script src="{% static 'js/carrinho.js' %}"></script>
 </body>
 </html>
