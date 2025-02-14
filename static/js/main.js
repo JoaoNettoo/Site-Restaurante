@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (btnCardapio) {
     btnCardapio.addEventListener("click", function () {
       if (isAuthenticated) {
-        window.location.href = "/pedido.html"; // Redireciona para pedidos se autenticado
+        window.location.href = "food-menu"; // Redireciona para cardapio se autenticado
       } else {
         alert("Faça login para acessar o cardápio.");
         window.location.href = "#login-section"; // Redireciona para a seção de login

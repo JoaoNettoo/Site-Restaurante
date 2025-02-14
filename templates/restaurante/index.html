@@ -31,7 +31,7 @@
                 <li><a href="#food-menu">Cardápio</a></li>
                 <li><a href="#testimonials">Avaliações</a></li>
                 <li><a href="#contact">Login</a></li>
-                <li><a href="pedido.html" id="salvar" >Pedidos</a></li>
+                <li><a href="{% url 'pedido' %}" id="salvar" >Pedidos</a></li>
             </ul>
             <h1 class="logo">Fome de Quê?</h1>
         </div>
@@ -71,7 +71,7 @@
         <img src="{% static 'images/imagem09.png' %}" alt="Espaguete" />
         <div class="img-content">
           <h3>Espaguete</h3>
-          <button onclick="window.location.href='pedido.html'; adicionarPedidoERedirecionar(1, 'Espaguete', 18, 'imagem09.png')" class="btn btn-primary">Adicionar pedido</button>
+          <button onclick="window.location.href='{% url 'pedido' %}'; adicionarPedidoERedirecionar(1, 'Espaguete', 18, 'imagem09.png')" class="btn btn-primary">Adicionar pedido</button>
           <!--<a href="pedido.html" class="btn btn-primary">Adicionar pedido</a>-->
         
         </div>
@@ -82,7 +82,7 @@
               <img src="{% static 'images/imagem08.jpeg' %}" alt="Camarão Empanado" />
               <div class="img-content">
                 <h3>Camarão Empanado</h3>
-                <button onclick="window.location.href='pedido.html'; adicionarPedidoERedirecionar(2, 'Camarão Empanado', 25, 'imagem08.jpeg')" class="btn btn-primary">Adicionar pedido</button>
+                <button onclick="window.location.href='{% url 'pedido' %}'; adicionarPedidoERedirecionar(2, 'Camarão Empanado', 25, 'imagem08.jpeg')" class="btn btn-primary">Adicionar pedido</button>
                 <!--<a href="pedido.html" class="btn btn-primary">Adicionar pedido</a>-->
               
               </div>
@@ -93,7 +93,7 @@
               <img src="{% static 'images/imagem10.jpeg' %}" alt="Camarão Grelhado" />
               <div class="img-content">
                 <h3>Camarão Grelhado</h3>
-                <button onclick="adicionarPedidoERedirecionar(3, 'Camarão Grelhado', 20, 'imagem10.jpeg')" class="btn btn-primary">Adicionar pedido</button>
+                <button onclick="window.location.href='{% url 'pedido' %}'; adicionarPedidoERedirecionar(3, 'Camarão Grelhado', 20, 'imagem10.jpeg')" class="btn btn-primary">Adicionar pedido</button>
                 <!--<a href="pedido.html" class="btn btn-primary">Adicionar pedido</a>-->
             
               </div>
@@ -116,7 +116,7 @@
                  para quem aprecia um bom corte de carne.
               </p>
               <p class="food-price">Preço: R$ 85</p>
-              <button onclick="adicionarPedidoERedirecionar(4, 'Maminha Grelhada', 85, 'imagem2.jfif')" class="btn btn-primary">Adicionar pedido</button>
+              <button onclick="window.location.href='{% url 'pedido' %}'; adicionarPedidoERedirecionar(4, 'Maminha Grelhada', 85, 'imagem2.jfif')" class="btn btn-primary">Adicionar pedido</button>
               
             </div>
           </div>
@@ -132,7 +132,7 @@
                  pimenta do reino, bacon e finalizado com farofa crocante de panko.
               </p>
               <p class="food-price">Preço: 275</p>
-              <button onclick="adicionarPedidoERedirecionar(5, 'Carbonara', 275, 'imagem3.jpeg')" class="btn btn-primary">Adicionar pedido</button>
+              <button onclick="window.location.href='{% url 'pedido' %}'; adicionarPedidoERedirecionar(5, 'Carbonara', 275, 'imagem3.jpeg')" class="btn btn-primary">Adicionar pedido</button>
               
             </div>
           </div>
@@ -148,7 +148,7 @@
                   Acompanha arroz de brócolis e farofa de ovos.
               </p>
               <p class="food-price">Preço: R$ 238</p>
-              <button onclick="adicionarPedidoERedirecionar(6, 'Bacalhau à Gomes de Sá', 238, 'imagem4.jpeg')" class="btn btn-primary">Adicionar pedido</button>
+              <button onclick="window.location.href='{% url 'pedido' %}'; adicionarPedidoERedirecionar(6, 'Bacalhau à Gomes de Sá', 238, 'imagem4.jpeg')" class="btn btn-primary">Adicionar pedido</button>
               
             </div>
           </div>
@@ -165,7 +165,7 @@
               
               </p>
               <p class="food-price">Preço: R$ 194</p>
-              <button onclick="adicionarPedidoERedirecionar(7, 'Camarão Fernando de Noronha', 194, 'imagem5.jpeg')" class="btn btn-primary">Adicionar pedido</button>
+              <button onclick="window.location.href='{% url 'pedido' %}'; adicionarPedidoERedirecionar(7, 'Camarão Fernando de Noronha', 194, 'imagem5.jpeg')" class="btn btn-primary">Adicionar pedido</button>
               
             </div>
           </div>
@@ -183,7 +183,7 @@
                 e sobremesas como essa.
               </p>
               <p class="food-price">Preço: R$ 85</p>
-              <button onclick="adicionarPedidoERedirecionar(8, 'Torta de Framboesa', 85, 'imagem6.JPG')" class="btn btn-primary">Adicionar pedido</button>
+              <button onclick="window.location.href='{% url 'pedido' %}'; adicionarPedidoERedirecionar(8, 'Torta de Framboesa', 85, 'imagem6.JPG')" class="btn btn-primary">Adicionar pedido</button>
 
             </div>
           </div>
@@ -201,7 +201,7 @@
                 alimentação.
               </p>
               <p class="food-price">Preço: R$ 123</p>
-              <button onclick="adicionarPedidoERedirecionar(9, 'Sobremesa Gelada de Frutas', 123, 'imagem7.JPG')" class="btn btn-primary">Adicionar pedido</button>
+              <button onclick="window.location.href='{% url 'pedido' %}'; adicionarPedidoERedirecionar(9, 'Sobremesa Gelada de Frutas', 123, 'imagem7.JPG')" class="btn btn-primary">Adicionar pedido</button>
 
             </div>
           </div>
