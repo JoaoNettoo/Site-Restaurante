@@ -36,10 +36,10 @@ document.addEventListener("DOMContentLoaded", function () {
   if (btnCardapio) {
     btnCardapio.addEventListener("click", function () {
       if (isAuthenticated) {
-        window.location.href = "food-menu"; // Redireciona para cardapio se autenticado
+        window.location.href ="{% url 'food-menu' %}"; // Redireciona para cardapio se autenticado
       } else {
         alert("Faça login para acessar o cardápio.");
-        window.location.href = "#login-section"; // Redireciona para a seção de login
+        window.location.href ="{% url 'loginform' %}"; // Redireciona para a seção de login
       }
     });
   }
