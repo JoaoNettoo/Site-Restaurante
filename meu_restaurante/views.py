@@ -16,6 +16,10 @@ def index(request):
 def pedido(request):
     return render(request, 'restaurante/pedido.html')  # Renderiza o template da página de pedidos
 
+def cardapio_view(request):
+    return render(request, 'restaurante/index.html')
+
+
 # View para o login do formulário HTML
 def login_view(request):
     if request.method == "POST":

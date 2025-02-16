@@ -32,14 +32,14 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Evento para o botão do cardápio
-  const btnCardapio = document.querySelector(".btn-primary");
+  const btnCardapio = document.querySelector("btn btn-primary");
   if (btnCardapio) {
     btnCardapio.addEventListener("click", function () {
       if (isAuthenticated) {
         window.location.href ="{% url 'food-menu' %}"; // Redireciona para cardapio se autenticado
       } else {
         alert("Faça login para acessar o cardápio.");
-        window.location.href ="{% url 'loginform' %}"; // Redireciona para a seção de login
+        window.location.href ="{% url 'contact' %}"; // Redireciona para a seção de login
       }
     });
   }
@@ -109,7 +109,7 @@ function validaForms(event) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("usuario", JSON.stringify(data.usuario));
         alert("Login realizado com sucesso!");
-        window.location.href = "/pedido.html";
+        window.location.href = "{% url 'pedido' %}";
       } else {
         senhaErro.innerText = "E-mail ou senha incorretos."; // Mensagem clara para credenciais erradas
       }          

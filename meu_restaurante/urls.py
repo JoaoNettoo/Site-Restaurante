@@ -8,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),          # Painel admin do Django
     path('', views.index, name='index'),      # Página inicial
     path('pedido/', views.pedido, name='pedido'),  # Página de pedidos (corrigido)
+    path('cardapio/', views.cardapio_view, name='#food-menu'),
     
     # API Endpoints
     path('api/pedido/', PedidoAPIView.as_view(), name='api-pedido'),  # API para pedidos

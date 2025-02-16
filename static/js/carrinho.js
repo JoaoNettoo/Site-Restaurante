@@ -5,7 +5,7 @@ function adicionarAoCarrinho(id, nome, preco, imagem) {
   const usuario = localStorage.getItem("usuario");
   if (!usuario) {
     alert("Você precisa estar logado para adicionar itens ao carrinho.");
-    window.location.href = "{% url 'login' %}";
+    window.location.href = "{% url 'contact' %}";
     return;
   }
 
