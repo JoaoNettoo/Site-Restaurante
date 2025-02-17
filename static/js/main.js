@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href ="{% url 'food-menu' %}"; // Redireciona para cardapio se autenticado
       } else {
         alert("Faça login para acessar o cardápio.");
-        window.location.href ="{% url 'loginForm' %}"; // Redireciona para a seção de login
+        window.location.href ="{% url 'contact' %}"; // Redireciona para a seção de login
       }
     });
   }
