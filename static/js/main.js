@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href ="{% url 'food-menu' %}"; // Redireciona para cardapio se autenticado
       } else {
         alert("Faça login para acessar o cardápio.");
-        window.location.href ="{% url 'contact' %}"; // Redireciona para a seção de login
+        window.location.href ="{% url 'loginForm' %}"; // Redireciona para a seção de login
       }
     });
   }
@@ -109,7 +109,7 @@ function validaForms(event) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("usuario", JSON.stringify(data.usuario));
         alert("Login realizado com sucesso!");
-        window.location.href = "{% url 'pedido' %}";
+        window.location.href = "{% url 'food-menu' %}";
       } else {
         senhaErro.innerText = "E-mail ou senha incorretos."; // Mensagem clara para credenciais erradas
       }          

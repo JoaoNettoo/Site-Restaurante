@@ -29,7 +29,7 @@
         <div class="action-buttons">
             <!-- Botões de ação -->
             <button class="finalize-btn" onclick="finalizarPedido()">Finalizar Pedido</button>
-            <button class="add-btn" onclick="window.location.href='#food-menu';">Adicionar Pedido</button>
+            <button class="add-btn" onclick="window.location.href= '{% url 'food-menu'%}';">Adicionar Pedido</button>
             <button class="cancel-btn" onclick="cancelarPedido()">Cancelar Pedido</button>
         </div>
         
@@ -55,6 +55,9 @@
             atualizarCarrinho(); // Atualiza a interface com os dados salvos
         });
     </script>
-</body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/carrinho.js' %}"></script>
 
+</body>
 </html>

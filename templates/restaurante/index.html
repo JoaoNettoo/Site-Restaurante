@@ -31,6 +31,7 @@
                 <li><a href="#food-menu">Cardápio</a></li>
                 <li><a href="#testimonials">Avaliações</a></li>
                 <li><a href="#contact">Login</a></li>
+                <li><a href="{% url 'logout' %}" class="btn btn-danger">Sair</a></li>
                 <li><a href="{% url 'pedido' %}" id="salvar" >Pedidos</a></li>
             </ul>
             <h1 class="logo">Fome de Quê?</h1>
@@ -272,15 +273,16 @@
           </div>
   
           <div class="form-container">
-            <form id="loginForm" method="POST" action="{% url 'login' %}" onsubmit="return validaForms(event)">
-              {% csrf_token %}
-              <h2>Login:</h2>
+            <form id="loginForm">
+                {% csrf_token %}
+                <h2>Login:</h2>
+        
                 <!-- Campo de E-mail -->
                 <input type="text" id="email" name="username" placeholder="E-Mail" />
                 <div class="erro-container">
                     <span id="emailErro" class="erro"></span>
                 </div>
-
+        
                 <!-- Campo de Senha -->
                 <div class="senha-container">
                     <input type="password" id="senha" name="password" placeholder="Senha">
@@ -288,10 +290,36 @@
                 <div class="erro-container">
                     <span id="senhaErro" class="erro"></span>
                 </div>
-              <br>
-              <button type="submit" class="btn btn-primary">LOGIN</button>
-              </form>
-          </div>
+                <br>
+        
+                <button type="submit" class="btn btn-primary">LOGIN</button>
+            </form>
+        </div>
+        
+        <div id="mensagemErro"></div>
+        
+        <script>
+            document.getElementById("loginForm").addEventListener("submit", function(event) {
+                event.preventDefault(); // Evita recarregar a página
+        
+                var formData = new FormData(this);
+        
+                fetch("{% url 'login' %}", {
+                    method: "POST",
+                    body: formData,
+                })
+                .then(response => response.json())  // Espera uma resposta JSON do servidor
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = "{% url 'food-menu' %}"; // Redireciona para o cardápio
+                    } else {
+                        document.getElementById("mensagemErro").innerHTML = "Usuário ou senha inválidos!";
+                    }
+                })
+                .catch(error => console.error("Erro:", error));
+            });
+        </script>
+        
       
         {% if messages %}
          <div class="messages">

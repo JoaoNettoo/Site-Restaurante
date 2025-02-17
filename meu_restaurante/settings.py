@@ -13,8 +13,6 @@ ALLOWED_HOSTS = [
     '4363671825424e60ac9762b0294ccb16.vfs.cloud9.us-east-1.amazonaws.com'
 ]
 
-LOGIN_REDIRECT_URL = '/pedido.html'  # Redireciona para a página de pedidos após o login
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -32,6 +30,11 @@ INSTALLED_APPS = [
     'meu_restaurante',  # app principal
     'rest_framework',
     'rest_framework_simplejwt',
+    'django.contrib.sites', 
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',  # Para autenticação com Google
 ]
 
 # Middleware
@@ -43,7 +46,24 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
+
+# Configurações de autenticação
+LOGIN_REDIRECT_URL = '/index/'  # Redirecionamento após login bem-sucedido
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',  # Backend padrão do Django
+    'allauth.account.auth_backends.AuthenticationBackend',  # Backend do allauth
+)
+
+# Configurações do site
+SITE_ID = 1
+
+# Configuração do Django Allauth
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
 # Configurações de URL e WSGI
 ROOT_URLCONF = 'meu_restaurante.urls'
